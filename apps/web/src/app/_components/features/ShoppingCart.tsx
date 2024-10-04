@@ -8,7 +8,7 @@ interface ShoppingCartProps {
 }
 
 interface CartItem {
-	id: string;
+	id: number;
 	product: {
 		name: string;
 		price: number;
@@ -17,7 +17,7 @@ interface CartItem {
 }
 
 export default function ShoppingCart({ closeCart }: ShoppingCartProps) {
-	const cartId = "1"; // Assume you have the logic to get the cartId
+	const cartId = 1; // Assume you have the logic to get the cartId
 
 	const utils = api.useUtils();
 
@@ -27,7 +27,7 @@ export default function ShoppingCart({ closeCart }: ShoppingCartProps) {
 		},
 	});
 
-	const handleRemoveItem = (itemId: string) => {
+	const handleRemoveItem = (itemId: number) => {
 		removeItem({ itemId });
 	};
 

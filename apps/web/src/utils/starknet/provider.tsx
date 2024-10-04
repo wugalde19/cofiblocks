@@ -1,29 +1,24 @@
-import { sepolia } from "@starknet-react/chains";
+import { goerli } from "@starknet-react/chains";
 import { StarknetConfig, publicProvider } from "@starknet-react/core";
 import type { Connector } from "@starknet-react/core";
-import { InjectedConnector } from "starknetkit/injected";
+import { WebWalletConnector } from "starknetkit/webwallet";
 
 export default function StarknetProvider({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const chains = [goerli];
+	const provider = publicProvider();
 	const connectors = [
-		// TODO: add ArgentX
-		// new InjectedConnector({
-		// 	options: { id: "argentX" },
-		// }),
-		new InjectedConnector({
-			options: { id: "braavos" },
-		}),
+		new WebWalletConnector({ url: "https://web.argent.xyz" }),
 	];
 
 	return (
 		<StarknetConfig
 			autoConnect
-			// TODO: change to mainnet
-			chains={[sepolia]}
-			provider={publicProvider()}
+			chains={chains}
+			provider={provider}
 			connectors={connectors as unknown as Connector[]}
 		>
 			{children}

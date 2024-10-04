@@ -1,10 +1,12 @@
 "use client";
 
 import Carousel from "@repo/ui/carousel";
-import { useAccount, useDisconnect } from "@starknet-react/core";
+import { useAccount, useConnect, useDisconnect } from "@starknet-react/core";
+import Link from "next/link";
 import ProductCatalog from "~/app/_components/features/ProductCatalog";
 import Header from "~/app/_components/layout/Header";
 import Main from "~/app/_components/layout/Main";
+import { api } from "~/trpc/react";
 
 const carouselData = [
 	{
@@ -29,11 +31,17 @@ const carouselData = [
 
 export default function Home() {
 	const { address } = useAccount();
+	const { connect, connectors } = useConnect();
 	const { disconnect } = useDisconnect();
 
 	return (
 		<Main>
-			<Header address={address} disconnect={disconnect} />
+			<Header
+				address={address}
+				connect={connect}
+				connectors={connectors}
+				disconnect={disconnect}
+			/>
 			<Carousel cards={carouselData} />
 			<ProductCatalog />
 		</Main>

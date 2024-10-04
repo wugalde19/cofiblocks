@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@repo/ui/button";
-import SkeletonLoader from "@repo/ui/skeleton";
 import Tooltip from "@repo/ui/tooltip";
 
 function App() {
@@ -35,8 +34,6 @@ function App() {
 						</Button>
 					</Tooltip>
 				</div>
-
-				<SkeletonLoader />
 			</div>
 		</div>
 	);

@@ -5,7 +5,7 @@ export const shoppingCartRouter = createTRPCRouter({
 	addItem: publicProcedure
 		.input(
 			z.object({
-				cartId: z.string(),
+				cartId: z.number(),
 				productId: z.number(),
 				quantity: z.number().min(1),
 			}),
@@ -31,7 +31,7 @@ export const shoppingCartRouter = createTRPCRouter({
 		}),
 
 	getItems: publicProcedure
-		.input(z.object({ cartId: z.string() }))
+		.input(z.object({ cartId: z.number() }))
 		.query(({ ctx, input }) => {
 			return ctx.db.shoppingCartItem.findMany({
 				where: { shoppingCartId: input.cartId },
@@ -40,7 +40,7 @@ export const shoppingCartRouter = createTRPCRouter({
 		}),
 
 	removeItem: publicProcedure
-		.input(z.object({ itemId: z.string() }))
+		.input(z.object({ itemId: z.number() }))
 		.mutation(async ({ ctx, input }) => {
 			return ctx.db.shoppingCartItem.delete({
 				where: { id: input.itemId },
@@ -50,7 +50,7 @@ export const shoppingCartRouter = createTRPCRouter({
 	createOrder: publicProcedure
 		.input(
 			z.object({
-				userId: z.string(),
+				userId: z.number(),
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
@@ -91,7 +91,7 @@ export const shoppingCartRouter = createTRPCRouter({
 	getOrders: publicProcedure
 		.input(
 			z.object({
-				userId: z.string(),
+				userId: z.number(),
 			}),
 		)
 		.query(async ({ ctx, input }) => {

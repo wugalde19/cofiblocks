@@ -13,6 +13,7 @@ interface PageHeaderProps {
 	leftIcon?: React.ReactNode;
 	rightIcons?: React.ReactNode[];
 	userAddress?: string;
+	loginButton?: React.ReactNode;
 	onLogout?: () => void;
 }
 
@@ -21,6 +22,7 @@ function PageHeader({
 	leftIcon,
 	rightIcons = [],
 	userAddress,
+	loginButton,
 	onLogout,
 }: PageHeaderProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,7 +54,7 @@ function PageHeader({
 	return (
 		<div className="w-full max-w-[24.375rem] h-16 px-4 py-2 bg-surface-inverse flex justify-between items-center mx-auto">
 			<div className="flex items-center">
-				{userAddress && (
+				{userAddress ? (
 					<div className="relative" ref={menuRef}>
 						<div
 							className="cursor-pointer "
@@ -86,6 +88,8 @@ function PageHeader({
 							</div>
 						)}
 					</div>
+				) : (
+					loginButton
 				)}
 			</div>
 			<div className="flex-grow text-center">

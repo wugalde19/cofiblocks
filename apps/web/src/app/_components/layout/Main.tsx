@@ -1,3 +1,5 @@
+import SiteHead from "./SiteHead";
+
 interface MainProps {
 	children: React.ReactNode;
 }
